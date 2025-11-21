@@ -1,4 +1,5 @@
-# HRH 极客个人展示网站
+# HRH-vh 个人展示网站（vue + hono）版本
+- 本版本目前停止维护，新版本将使用vue + springboot重构
 
 ## 技术栈
 - 前端：Vue 3 + TypeScript + TailwindCSS + @vueuse/motion + shadcn-vue
