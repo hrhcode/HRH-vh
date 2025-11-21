@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 赛博霓虹字体与背景增强 */
+:root {
+  --glow: 0 0 12px rgba(0, 212, 255, 0.6);
+  --fg: #ffffff;
+  --muted: rgba(203, 213, 225, 0.9);
+  --link-color: #00d4ff;
+  --link-hover-color: #00ff9d;
+  --btn-fg: #ffffff;
+  --btn-primary-bg: rgba(0, 212, 255, 0.3);
+  --btn-primary-border: rgba(0, 212, 255, 0.5);
+  --btn-primary-hover-bg: rgba(0, 212, 255, 0.5);
+  --btn-accent-bg: rgba(0, 255, 157, 0.2);
+  --btn-accent-border: rgba(0, 255, 157, 0.5);
+  --btn-accent-hover-bg: rgba(0, 255, 157, 0.4);
+  --hero-hello-color: #00d4ff;
+  --hero-world-color: #8a2be2;
+  --footer-fg: rgba(203, 213, 225, 0.7);
+  --footer-border: rgba(6, 182, 212, 0.2);
+  --menu-bg: rgba(0, 0, 0, 0.7);
+  --menu-border: rgba(6, 182, 212, 0.3);
+  --menu-hover-bg: rgba(255, 255, 255, 0.1);
+  --modal-bg: rgb(20, 20, 22);
+  --modal-border: rgba(6, 182, 212, 0.3);
+  --modal-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  --btn-primary-fg: #00d4ff;
+  --pill-ring: rgba(0, 212, 255, 0.25);
+}
+html, body, #app { height: 100%; min-height: 100vh; }
+body { display: flex; flex-direction: column; }
+#app { flex: 1; display: flex; flex-direction: column; }
+body {
+  background: radial-gradient(1200px 600px at 80% 10%, rgba(0, 212, 255, 0.1), transparent),
+    radial-gradient(800px 400px at 10% 80%, rgba(138, 43, 226, 0.1), transparent),
+    #000;
+}
+
+/* 主题：黑夜与白天 */
+body.theme-dark {
+  color: var(--fg);
+  background: radial-gradient(1200px 600px at 80% 10%, rgba(0, 212, 255, 0.12), transparent),
+    radial-gradient(800px 400px at 10% 80%, rgba(138, 43, 226, 0.12), transparent),
+    #000;
+}
+
+.nav-link {
+  color: var(--link-color);
+  transition: color 200ms ease;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+}
+.nav-link:hover {
+  color: var(--link-hover-color);
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 2px;
+  width: 0;
+  background: linear-gradient(90deg, var(--link-color), var(--link-hover-color));
+  box-shadow: 0 0 8px var(--link-color);
+  transition: width 220ms ease;
+}
+.nav-link:hover::after { width: 100%; }
+
+.nav-bar { backdrop-filter: blur(8px); background-color: var(--nav-bg, rgba(10,12,16,0.6)); border-bottom: 1px solid var(--nav-border, rgba(6,182,212,0.22)); padding-left: max(env(safe-area-inset-left), 0px); padding-right: max(env(safe-area-inset-right), 0px); }
+.nav-container { height: 3.5rem; }
+.nav-brand { color: var(--link-color); font-weight: 800; letter-spacing: .18em; display: inline-flex; align-items: center; gap: .35rem; }
+.nav-menu button { color: var(--fg); }
+.nav-scan {
+  position: absolute;
+  bottom: 0; left: 0; height: 2px; width: 30%;
+  background: linear-gradient(90deg, transparent, var(--link-color), transparent);
+  animation: scan 2.8s linear infinite;
+}
+@keyframes scan {
+  0% { transform: translateX(-30%); }
+  100% { transform: translateX(330%); }
+}
+
+.btn {
+  color: var(--btn-fg);
+  border: 1px solid var(--btn-border);
+  background-color: var(--btn-bg);
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  transition: background-color 200ms ease, box-shadow 200ms ease, transform 180ms ease;
+}
+.btn:hover { transform: scale(1.05); }
+.btn-primary {
+  --btn-bg: var(--btn-primary-bg);
+  --btn-border: var(--btn-primary-border);
+  color: var(--btn-primary-fg);
+}
+.btn-primary:hover { background-color: var(--btn-primary-hover-bg); }
+.btn-accent {
+  --btn-bg: var(--btn-accent-bg);
+  --btn-border: var(--btn-accent-border);
+}
+.btn-accent:hover { background-color: var(--btn-accent-hover-bg); }
+
+.menu-panel {
+  background-color: var(--menu-bg);
+  border: 1px solid var(--menu-border);
+}
+.menu-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+}
+.menu-item:hover { background-color: var(--menu-hover-bg); }
+.btn-pill {
+  border-radius: 9999px;
+  border-width: 2px;
+  box-shadow: 0 0 0 2px var(--pill-ring);
+  font-weight: 700;
+}
+
+.hover-fx {
+  transition: transform 200ms ease, text-shadow 200ms ease, color 200ms ease;
+  display: inline-block;
+  position: relative;
+  will-change: transform, text-shadow;
+  cursor: pointer;
+  user-select: none
+}
+.hover-fx:hover {
+  transform: translateY(-2px) scale(1.06);
+  text-shadow: 0 0 22px var(--hover-shadow-color), 0 0 40px var(--hover-shadow-color);
+  animation: jitter 600ms ease-in-out infinite alternate;
+}
+.hover-fx::before,
+.hover-fx::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+.hover-fx::before { color: #00d4ff; }
+.hover-fx::after { color: #ff2d95; }
+.hover-fx:hover::before,
+.hover-fx:hover::after {
+  opacity: 0.7;
+  animation: chroma 700ms ease-in-out infinite alternate;
+}
+@keyframes chroma {
+  0% { transform: translate(0px, 0px); }
+  100% { transform: translate(2px, -2px); }
+}
+@keyframes jitter {
+  0% { transform: translateY(-2px) scale(1.06) rotate(-0.3deg); }
+  50% { transform: translateY(-3px) scale(1.07) rotate(0.3deg); }
+  100% { transform: translateY(-2px) scale(1.06) rotate(-0.2deg); }
+}
+.nav-scan { display: none !important; }
+/*
+  品牌层叠（通用）：用于带“首页/HRH”层叠切换的文本效果
+  使用方式：在触发容器上添加 `brand-hover` 类；子元素使用
+    <span class="brand-layer brand-default">...</span>
+    <span class="brand-layer brand-alt">...</span>
+*/
+.brand-layer { position: relative; display: inline-flex; align-items: center; gap: 0.4rem; white-space: nowrap; transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1), opacity 600ms cubic-bezier(0.22, 1, 0.36, 1); }
+.brand-default { opacity: 1; transform: translateX(0); }
+.brand-alt { position: absolute; left: 50%; top: 50%; opacity: 0; transform: translate(-50%, -50%) translateX(48px); color: #ff6bd5; text-shadow: 0 0 12px rgba(138, 43, 226, 0.7); font-weight: 900; letter-spacing: 0.5px; }
+.brand-hover:hover .brand-default { opacity: 0; transform: translateX(-140%); }
+.brand-hover:hover .brand-alt { opacity: 1; transform: translate(-50%, -50%) translateX(0); }

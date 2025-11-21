@@ -1,0 +1,14 @@
+{
+  "name": "hrh",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@9.11.0",
+  "scripts": {
+    "dev:web": "pnpm -F web dev",
+    "dev:api": "pnpm -F api dev",
+    "build:web": "pnpm -F web build",
+    "build:api": "pnpm -F api build",
+    "lint": "pnpm -F web lint && pnpm -F api lint",
+    "typecheck": "pnpm -F web typecheck && pnpm -F api typecheck"
+  }
+}

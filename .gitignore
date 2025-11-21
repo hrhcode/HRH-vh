@@ -1,0 +1,9 @@
+node_modules/
+.DS_Store
+dist/
+*.log
+.env*
+apps/web/.vite
+apps/web/.cache
+apps/api/.cache
+data/*.json
